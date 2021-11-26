@@ -1,0 +1,479 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北 | 砂糖砂糖沙</title><meta name="keywords" content="Linux,osu,Wine,Game"><meta name="author" content="BlackSand"><meta name="copyright" content="BlackSand"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="适合了解Wine以及 osu!Stable 人士的指北，内容简单明了，操作基于Arch：简要版 (WIP) 适合新人或想详细了解所做步骤作用的指北，内容详尽繁多，有疑难解答：即本文 或 BiliBili专栏版 如果仅仅想要玩 osu! ，没有刷PP的想法，为什么不直接使用原生且延迟极低的 osu!Lazer 呢？  概况在大概今年六月初的时候，因为实在受不了 Windows10 下系统更新无法持续">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北">
+<meta property="og:url" content="https://blacksand.top/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/index.html">
+<meta property="og:site_name" content="砂糖砂糖沙">
+<meta property="og:description" content="适合了解Wine以及 osu!Stable 人士的指北，内容简单明了，操作基于Arch：简要版 (WIP) 适合新人或想详细了解所做步骤作用的指北，内容详尽繁多，有疑难解答：即本文 或 BiliBili专栏版 如果仅仅想要玩 osu! ，没有刷PP的想法，为什么不直接使用原生且延迟极低的 osu!Lazer 呢？  概况在大概今年六月初的时候，因为实在受不了 Windows10 下系统更新无法持续">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/10/09/a9oj4NRX6F1PleY.jpg">
+<meta property="article:published_time" content="2021-10-02T10:35:02.000Z">
+<meta property="article:modified_time" content="2021-10-18T05:03:04.089Z">
+<meta property="article:author" content="BlackSand">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="osu">
+<meta property="article:tag" content="Wine">
+<meta property="article:tag" content="Game">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/10/09/a9oj4NRX6F1PleY.jpg"><link rel="shortcut icon" href="https://z3.ax1x.com/2021/08/25/hVEj1O.png"><link rel="canonical" href="https://blacksand.top/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f7ed7b115e64d8cb67cfaf4304528b62";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-W6GTX3NX77"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-W6GTX3NX77');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-18 13:03:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/color.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z3.ax1x.com/2021/08/25/hAzJYj.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/10/09/a9oj4NRX6F1PleY.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">砂糖砂糖沙</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-02T10:35:02.000Z" title="发表于 2021-10-02 18:35:02">2021-10-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-18T05:03:04.089Z" title="更新于 2021-10-18 13:03:04">2021-10-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>适合<strong>了解Wine以及 osu!Stable 人士</strong>的指北，内容简单明了，操作基于Arch：<a href="www.baidu.com">简要版</a> (WIP)</p>
+<p>适合<strong>新人</strong>或<strong>想详细了解所做步骤作用</strong>的指北，内容详尽繁多，有疑难解答：<a href="https://blacksand.top/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!Stable%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97">即本文</a> 或 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv11906796?from=search&spm_id_from=333.337.0.0">BiliBili专栏版</a></p>
+<p>如果仅仅想要玩 osu! ，<strong>没有刷PP的想法</strong>，为什么不直接使用原生且延迟极低的 <a target="_blank" rel="noopener" href="https://github.com/ppy/osu">osu!Lazer</a> 呢？</p>
+<hr>
+<h1 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h1><p>在大概今年六月初的时候，因为实在受不了 Windows10 下系统更新无法持续禁用和莫名其妙的性能等问题，所以在听到stllok小曲奇是在ArchLinux下进行 osu! 的游玩这件事后，我也萌发了 “干脆我就跑去Linux日用吧，而且听说ArchLinux的日用软件体系基本完备，打大游戏和做渲染视频专门用个干净的 Windows10 跑就好了” 的想法。</p>
+<p>这篇文章<strong>本意上</strong>是为了进行一个踩坑的总结，在我什么时候系统突然出问题不得不<del>REMAKE</del> REINSTALL时，能够重新回来这篇文章进行配置。其次是给有需求的朋友一个<strong>可能有错误</strong>的指导，因为我用Linux的时长也就半年有多。</p>
+<p><strong>另外，本文中的 “音频延迟” 指的并不是降低 osu! 中因为使用 Wasapi Shared 和 DirecetSound 而导致的“音频延迟”，而是降低因为Wine和Linux使用的音频服务器导致的“音频延迟”，使其手感和延迟接近在Windows下游玩 osu! 的感受。</strong></p>
+<p>注意事项：默认你已熟知Linux简单命令操作；拥有一个已经配置相对完好的Linux系统；拥有足够的耐心，以及时间；本文可能有点罗嗦，本质上是为了让各位明白前因和后果；本文基于ArchLinux进行编写。 </p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4LlOfJ.png" alt="个人为笔记本"></p>
+<p>下面这两个视频都是在ArchLinux下进行游玩和回放录制的： </p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SB4y1T71K">[osu!]senya - 夕立、君と隠れ処 [Insane] +DT 5.73* 253PPFC</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1K44y1z79M">[osu!] 打了一年半才打出来的哨戒班主难FC</a></p>
+</li>
+</ol>
+<hr>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="什么是Wine和Lutris"><a href="#什么是Wine和Lutris" class="headerlink" title="什么是Wine和Lutris"></a>什么是Wine和Lutris</h2><blockquote>
+<p>Wine （“Wine Is Not an Emulator” 的首字母缩写）是一个能够在多种 POSIX-compliant 操作系统（诸如 Linux，macOS 及 BSD 等）上运行 Windows 应用的兼容层。 简而言之它是一个逆向出来的干净的小Windows，能够调用Windows下的API进行EXE程序的运行。 </p>
+</blockquote>
+<blockquote>
+<p>Lutris 是 Linux 的开源游戏安装平台。它的优点是能够在它的平台中进行游戏的安装和自动配置，而不需要用户自行进行复杂的配置，同时也提供大量可视化自定义操作。简而言之Lutris中含有相关游戏和你当前使用发行版的安装脚本，能够像Windows下的安装一样，开箱即用。</p>
+</blockquote>
+<h2 id="安装Lutris"><a href="#安装Lutris" class="headerlink" title="安装Lutris"></a>安装Lutris</h2><p>为了确保你能够流畅的进行游戏，请务必在系统中安装好相应显卡驱动以及Wine，这将为Lutris的运行提供环境依赖。</p>
+<p>ArchLinux下的Lutris可以从Arch Community Repository获取：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S lutris<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<blockquote>
+<p>尽管 Lutris 提供并使用自己的 Wine 构建，我仍建议您安装 Wine 的所有依赖项以确保工作正常。</p>
+<p>如使用其他发行版，请参阅Lutris的<a target="_blank" rel="noopener" href="https://github.com/lutris/docs/blob/master/WineDependencies.md">官方docs文档</a>获取更多信息。</p>
+</blockquote>
+<p>在ArchLinux下安装Wine以及依赖需要启用<code>multilib</code> 存储库，请撤销<code>/etc/pacman.conf</code>中的[multilib]注释部分： </p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;etc&#x2F;pacman.conf
+----------------------------------------------------------------------
+[multilib]
+Include &#x3D; &#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>更新你的系统：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pacman -Syu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>执行下面的命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls <span class="token punctuation">\</span>
+mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error <span class="token punctuation">\</span>
+lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo <span class="token punctuation">\</span>
+sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama <span class="token punctuation">\</span>
+ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 <span class="token punctuation">\</span>
+lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="运行Lutris，安装osu"><a href="#运行Lutris，安装osu" class="headerlink" title="运行Lutris，安装osu!"></a>运行Lutris，安装osu!</h2><p>安装完成后运行Lutris，第一次运行可能需要一把梯子才可运行下去。运行后选中左侧的Sources-&gt;Lutris，然后在上方的搜索框进行搜索“osu!”，安装Windows版本的osu!。鉴于国内糟糕的网络环境，也请注意安装过程中osu!也需要使用到梯子。</p>
+<p>安装完成后打开，看看是否能够正常运行osu!，并且测试一下打图是否存在问题。值得一提的是此时你会感觉到音频延迟非常非常大，这个问题将会在下个章节解决。</p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L1s39.png" alt="Lutris下安装Windows"></p>
+<h2 id="优化调整"><a href="#优化调整" class="headerlink" title="优化调整"></a>优化调整</h2><ol>
+<li><p>在osu!中务必将帧率设置在无限制或者Optimal，否则会出现较大的输入延迟；</p>
+</li>
+<li><p>在Lutris中，右键osu!-&gt;configure，勾选左下角“Show advanced opinions”，转到“System Opinions“，确保“Disable desktop effects”为开启，以消除当前桌面环境的特效合成器导致的延迟；</p>
+</li>
+<li><p>在“System Options” 最下面的Enviroment Variavles，点击Add，key值栏填入 vblack_mode ，value值栏填入0；</p>
+</li>
+<li><p>同样在“System Opinions”中，确保“Reduce Pulseaudio latency”为关闭，否则将会破坏掉Wine音频驱动补丁的延迟修正。</p>
+</li>
+</ol>
+<hr>
+<h1 id="音频延迟修正"><a href="#音频延迟修正" class="headerlink" title="音频延迟修正"></a>音频延迟修正</h1><p>实际上在Linux下运行 osu! 是极为轻松远古的一件事情，我甚至在 osu! 论坛上看到了一篇2009年的相关指南。但重要的是不仅仅是只能运行，还需要符合我们的需求。</p>
+<p>在Linux上游玩 osu!有一个显著的问题就是音频延迟，原因简析：</p>
+<p>第一是由Linux自带的 pulseaudio 音频服务器为了兼容性，对音频延迟做了很大的牺牲，如果不进行一些调整，音频延迟比Windows下面甚至还要高的多。</p>
+<p>第二是来源于Wine配置问题，需要调整音频暂存时间参数尽量低，同时保证 osu! 正常播放音频。</p>
+<p>更详细的原因我会在文章尾部的链接放出，接下来文章对延迟调整有两个方案，分别为：</p>
+<ol>
+<li><p><a href="#gonX%E7%9A%84%E9%9F%B3%E9%A2%91%E5%BB%B6%E8%BF%9F%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">gonX的Wine构建，几乎全自动配置。 (最新，会动态调整参数，开箱即用)</a></p>
+</li>
+<li><p><a href="#PooN%E7%9A%84%E9%9F%B3%E9%A2%91%E5%BB%B6%E8%BF%9F%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">PooN的Wine补丁，需要全手动配置。 (过时，但完全可用，仅作备用和参考)</a></p>
+</li>
+</ol>
+<p>个人强烈推荐使用<a href="#gonX%E7%9A%84%E9%9F%B3%E9%A2%91%E5%BB%B6%E8%BF%9F%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88" title="最新，会动态调整参数，开箱即用">gonX的方案</a>。</p>
+<hr>
+<h1 id="gonX的音频延迟调整方案"><a href="#gonX的音频延迟调整方案" class="headerlink" title="gonX的音频延迟调整方案"></a>gonX的音频延迟调整方案</h1><p>鉴于PooN的补丁完成于三年前，时间久远，补丁配置较困难，打上补丁后甚至无法使用osu!的非兼容模式播放音频（即只能使用DirectSound播放音频，Wasapi Shared在约一年半前推出，当然没有适配音频接口），偶尔出现游戏崩溃现象，gonX修改构建了一个包含动态参数调整，崩溃修复  <del>Wine Debug警告</del> 的Wine6.14构建包，几乎做到了开箱即用，配置友好。</p>
+<h2 id="从pulseaudio迁移到pipewire-强烈建议"><a href="#从pulseaudio迁移到pipewire-强烈建议" class="headerlink" title="从pulseaudio迁移到pipewire (强烈建议)"></a>从pulseaudio迁移到pipewire (强烈建议)</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/PipeWire">PipeWire</a>是一个新的低级多媒体框架。它旨在以最小的延迟提供音频和视频的捕获和回放，并支持基于PulseAudio、JACK、ALSA和GStreamer的应用程序。</p>
+</blockquote>
+<p>通过直接使用pipewire，我们可以越过PooN方案中大量的配置文件调整，获得低延迟音频。</p>
+<p>gonX说过如果使用他的补丁，<strong>pipewire + osu!关闭音频兼容模式</strong>是最好的选择，参数会自动调整，对于大多数人已足够使用。如坚持使用pulseaudio或开启<a href="#%E5%90%AF%E7%94%A8osu%E7%9A%84%E9%9F%B3%E9%A2%91%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F">音频兼容模式</a>，则需要手动调整一些参数，但仍比PooN的配置简单得多。</p>
+<p>有些发行版预装使用PipeWire为音频服务器，此部分可酌情跳过，了解更多pipewire详情请参阅<a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/PipeWire">ArchWiki</a>。</p>
+<p>如何在 Arch 中从 pulseaudio 迁移至 pipewire ：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 移除所有pulseaudio服务</span>
+systemctl --user disable --now pulseaudio.socket pulseaudio.service
+
+<span class="token comment"># 安装pipewire pipewire-pulse pipewire-media-session，包管理会提示你将删除pulseaudio的相关软件包，选择Y</span>
+<span class="token function">sudo</span> pacman -S pipewire pipewire-pulse pipewire-media-session
+
+<span class="token comment"># 安装完成后，启动pipewire服务</span>
+systemctl --user <span class="token builtin class-name">enable</span> --now pipewire.service pipewire.socket pipewire-media-session.service pipewire-pulse.service pipewire-pulse.socket<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>随后对计算机进行重启操作。</p>
+<h2 id="下载并安装gonX的Wine构建"><a href="#下载并安装gonX的Wine构建" class="headerlink" title="下载并安装gonX的Wine构建"></a>下载并安装gonX的Wine构建</h2><p>我强烈建议通过正常渠道下载gonX的Wine构建，这算是对作者的一种感谢：<a target="_blank" rel="noopener" href="https://dwz.mk/eQNbuq">Google Drive</a>（需梯子）</p>
+<p>另外我同样提供有<a target="_blank" rel="noopener" href="https://blacksand.lanzouw.com/b0b3zo18d">蓝奏盘</a>的链接下载，提取密码为:1234 。由于格式限制，从蓝奏盘下载下来的文件需要为文件扩展名添加.zst，否则压缩文件将无法正常读取。</p>
+<p>如果你正在使用Arch，则可以使用下面命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Wine构建将默认安装在/opt/wine-osu下，此处以wine-osu-6.14-1-x86_64.pkg.tar.zst为例：</span>
+<span class="token function">sudo</span> pacman -U ~/Download/wine-osu-6.14-1-x86_64.pkg.tar.zst<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>安装完成后，打开Lutris-&gt;右键osu!-&gt;configure，在弹出窗口中勾选左下角的 “show advanced options”，转至“Runner Options”页，在“Wine Version”中选择Custom（自定义），然后在下面一栏点击右边的Browse..，选中<code>/opt/wine-osu/bin/wine</code>，重要的是选中wine这个文件，选择完成后保存即可。</li>
+</ul>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L1gnx.png" alt="Lutris"></p>
+<ul>
+<li><p>如果是非Arch用户或想要自定义安装路径，则需要打开存档包，个人建议将存档包中/opt文件下的内容解压到Lutris的Wine构建文件夹中，方便Lutris选择自定义Wine构建。</p>
+<p>Lutris默认的Wine构建存放位置：<code>~/.local/share/lutris/runners/wine/</code></p>
+<p>解压完成后，打开Lutris-&gt;右键osu!-&gt;configure，在弹出窗口中勾选左下角的 “show advanced options”，转至“Runner Options”页，在“Wine Version”中选择你刚刚解压的wine-osu文件夹，选择完成后保存即可。</p>
+</li>
+</ul>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L1RHK.png" alt="Lutris"></p>
+<h2 id="设置SAP-SAD（针对pulseaudio用户）"><a href="#设置SAP-SAD（针对pulseaudio用户）" class="headerlink" title="设置SAP/SAD（针对pulseaudio用户）"></a>设置SAP/SAD（针对pulseaudio用户）</h2><p><strong>如果现在正在使用pipewire作为音频服务器，则可以完全无视该部分，默认情况下补丁会自动帮你调整这些参数，此时你可以跳转到下一个部分。</strong></p>
+<ul>
+<li><p>如果你仍在使用 pulseaudio + 关闭音频兼容模式，此时你需要在Lutris中设置<code>STAGING_AUDIO_PERIOD</code>（SAP）。右键osu!-&gt;configure，转到“System Opinions“，在最下面的Enviroment Variavles，点击Add，key值栏填入 <code>STAGING_AUDIO_PERIOD</code> ，value值栏填入10000，然后按Save进行保存。</p>
+<p>打开osu! 进行测试，如果出现音频炸裂的现象，则回到 SAP 处，每次以10000为单位提高value，直到音频正常。</p>
+</li>
+</ul>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L144e.png" alt="img"></p>
+<ul>
+<li>如果你仅能通过pulseaudio + 开启音频兼容模式游玩，则需要在Lutris中设置<code>STAGING_AUDIO_DURATION</code>（SAD），添加参数的方法与SAP一致，但是请确保SAD = 2*SAP ，即此时我应该设置SAP为20000，SAD为40000。</li>
+</ul>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L1TgA.png" alt="img"></p>
+<h2 id="初始化osu-Wine虚拟盘（即WINEPREFIX），使用winetricks安装运行组件"><a href="#初始化osu-Wine虚拟盘（即WINEPREFIX），使用winetricks安装运行组件" class="headerlink" title="初始化osu! Wine虚拟盘（即WINEPREFIX），使用winetricks安装运行组件"></a>初始化osu! Wine虚拟盘（即WINEPREFIX），使用winetricks安装运行组件</h2><p>WINEPREFIX可以说是一个最小的Windows系统，但其中并没有安装组件，所以需要一定的初始化。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 初始化WINEPREFIX，其中WINE取gonX解压的路径的bin/wine文件，WINEPREFIX取你想将此最小Windows的虚拟盘放置的地方，WINEARCH取win32代表建立32位的wine</span>
+<span class="token assign-left variable">WINEARCH</span><span class="token operator">=</span>win32 <span class="token assign-left variable">WINEPREFIX</span><span class="token operator">=~</span>/.wineosu <span class="token assign-left variable">WINE</span><span class="token operator">=</span>/opt/wine-osu/bin/wine winecfg
+
+<span class="token comment"># 初始化完成后，关闭winecfg，为该虚拟盘安装组件</span>
+<span class="token assign-left variable">WINEPREFIX</span><span class="token operator">=~</span>/.wineosu <span class="token assign-left variable">WINE</span><span class="token operator">=</span>/opt/wine-osu/bin/wine -f -q winetricks cjkfonts gdiplus dotnet45<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>dotnet45</code>将不会完全安装，这是wine6版本后的bug，如持续出现：<code>01f4:fixme:ole:thread_context_callback_ContextCallback 05037D0C, 01DD7011, 04E9FA94, &#123;d7174f82-36b8-4aa8-800a-e963ab2dfab9&#125;, 2, 00000000</code> 等类似日志错误，则可以按ctrl+c中断。如无法中断请使用系统监视器等软件包处理ms开头的.exe进程即可。 </p>
+<p>为什么不使用<code>dotnet40</code>而是<code>dotnet45</code>，参阅<a href="#%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94">疑难解答的最后一项</a>。</p>
+<h2 id="配置Lutris-的Wine-Prefix，尝试启动osu"><a href="#配置Lutris-的Wine-Prefix，尝试启动osu" class="headerlink" title="配置Lutris 的Wine Prefix，尝试启动osu!"></a>配置Lutris 的Wine Prefix，尝试启动osu!</h2><p>运行组件安装完成后，打开Lutris-&gt;右键osu!-&gt;configure-&gt;Game Options，在Wine Prefix中重新指向你刚才在初始化时设定的<code>WINEPREFIX</code>路径，且确保最下面的 “Prefix architecture” 为32-bit，完成后保存。</p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L17jI.png" alt="img"></p>
+<p>在Lutris中打开osu! ，一般此时已经能够正常运行，字体，音频延迟等问题都已解决。</p>
+<hr>
+<h1 id="PooN的音频延迟调整方案"><a href="#PooN的音频延迟调整方案" class="headerlink" title="PooN的音频延迟调整方案"></a>PooN的音频延迟调整方案</h1><p>注意：PooN的方案在使用pipewire-pulse（即pipewire的pulseaudio兼容实现组件）时可能会出现无法预知的错误，例如没有声音或出现游戏闪退等问题。因本文在撰写时，默认使用的是pulseaudio作为声音服务器，如果正在使用pipewire，我只建议使用gonX的方案修正延迟。</p>
+<h2 id="更换Lutris的Wine构建（可选）"><a href="#更换Lutris的Wine构建（可选）" class="headerlink" title="更换Lutris的Wine构建（可选）"></a>更换Lutris的Wine构建（可选）</h2><p>更换Wine构建说不定可以解决一些问题。由于之前使用tkg-osu-4.6的Wine构建，在我的电脑上无法让游戏跑到显示器的标准刷新率（144Hz），之后我更换使用其他Wine构建，osu! 就能跑到144了。请根据自身情况酌情更改。</p>
+<p>步骤：打开Lutris，在左侧栏目的Runner中移到Wine上，点击左侧的下载箭头按钮。然后在里面对<code>lutris-osu-1</code>左边的框打勾，他会自动下载新的运行环境。（在最新的wine构建管理器中仅有<code>lutris-osu-2</code>的构建，所以此处请转用<code>lutris-osu-2</code>）</p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L1XE8.png" alt="img"></p>
+<p>下载完成后，右键osu!-&gt;configure-&gt;Runner options，在Wine Version中选择新的<code>lutris-osu-1-x86_64</code>。</p>
+<h2 id="启用osu的音频兼容模式"><a href="#启用osu的音频兼容模式" class="headerlink" title="启用osu的音频兼容模式"></a>启用osu的音频兼容模式</h2><p>由于PooN的补丁制作完成于三年前，而当时 osu! 并没有实装Wasapi Shared的音频接口。所以需要启用音频兼容模式，让 osu! 调用旧的 DirectSound 音频接口输出音频，若不启用音频兼容模式，打补丁后则会出现音频炸裂或无声的现象。</p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L1jUS.png" alt="若不启用，打补丁后则会出现音频炸裂或无声的现象"></p>
+<h2 id="下载音频驱动补丁（由PooN提供）"><a href="#下载音频驱动补丁（由PooN提供）" class="headerlink" title="下载音频驱动补丁（由PooN提供）"></a>下载音频驱动补丁（由PooN提供）</h2><p>PooN在大约三年前测试了osu!在pulseaudio下的延迟并且进行了大量调整工作，使音频延迟最终可以降低到15-20ms，这里只需要将Lutris中使用的定制Wine的音频文件进行替换即可。在终端输入：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 如果你更换了构建，则需要注意文件夹路径是否正确</span>
+<span class="token function">wget</span> -O ~/.local/share/lutris/runners/wine/tkg-osu-4.6-x86_64/lib/wine/winepulse.drv.so https://blog.thepoon.fr/assets/articles/2018-06-16-osuLinuxAudioLatency/32bit/winepulse.drv.so
+
+<span class="token function">wget</span> -O ~/.local/share/lutris/runners/wine/tkg-osu-4.6-x86_64/lib64/wine/winepulse.drv.so https://blog.thepoon.fr/assets/articles/2018-06-16-osuLinuxAudioLatency/64bit/winepulse.drv.so<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="音频相关配置文件调整"><a href="#音频相关配置文件调整" class="headerlink" title="音频相关配置文件调整"></a>音频相关配置文件调整</h2><p>在终端使用root身份输入：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mkdir</span> -p /etc/pulse/daemon.conf.d/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>该文件是对PulseAudio进行设置并生成在刚才创建的文件夹中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"high-priority = yes
+nice-level = -15
+
+realtime-scheduling = yes
+realtime-priority = 50
+
+resample-method = speex-float-0
+
+default-fragments = 2 # Minimum is 2
+default-fragment-size-msec = 2 # You can set this to 1, but that will break OBS audio capture."</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> -a /etc/pulse/daemon.conf.d/10-better-latency.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<hr>
+<p>接下来调整 <code>/etc/security/limits.conf</code>，以赋予 PulseAudio 更高的系统优先级：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/security/limits.conf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>到达该文件的最底部，并添加：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"YOURUSERNAME - nice -20
+
+YOURUSERNAME - rtprio 99"</span> <span class="token operator">>></span> /etc/security/limits.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>请注意这里的<code>YOURUSERNAME</code>替换成你的用户名，例如我的是blacksand：</p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L1v4g.png" alt="替换用户名进入"></p>
+<hr>
+<p>最后，编辑<code>/etc/pulse/default.pa :</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/pulse/default.pa<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>应该可以找到相似的这一行文字：<code>load-module module-udev-detect</code>，在其后面添加 tsched=0 ，即为：</p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L39vn.png" alt="在45行左右的位置"></p>
+<hr>
+<p>保存所有操作，并重启你的Linux，从而使新的配置文件得到应用。</p>
+<p><strong>敬请注意：</strong>重启后尝试播放音频，如果出现音频撕裂的现象，请在第一步生成的 <code>10-better-latency.conf</code> 中，将 <code>default-fragment-size-msec</code> 每次调整增加 1 点，保存并重新启动Linux，直到正常播放音频，保证打开osu!后，音频依旧正常。</p>
+<p>在播放音频时在终端使用下面的命令可以查看当前系统音频的延迟：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pacmd list-sinks <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'latency: [1-9]'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这里是我的终端显示：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>blacksand@ArchLinux ~<span class="token punctuation">]</span>$ pacmd list-sinks <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'latency: [1-9]'</span>
+        fixed latency: <span class="token number">11.97</span> ms
+        current latency: <span class="token number">12.30</span> ms
+        fixed latency: <span class="token number">12.34</span> ms
+<span class="token punctuation">[</span>blacksand@ArchLinux ~<span class="token punctuation">]</span>$ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="Lutris相关参数调整"><a href="#Lutris相关参数调整" class="headerlink" title="Lutris相关参数调整"></a>Lutris相关参数调整</h2><p>打开 Lutris ，右击游戏 osu!-&gt;configure-&gt;System options，在最下面的Enviroment Variavles，点击Add，key值栏填入 <code>STAGING_AUDIO_DURATION</code> ，value值栏填入10000，然后按Save进行保存。</p>
+<p>打开 osu! 进行测试，如果出现音频播放撕裂卡顿的现象，则退出游戏，并且将上面设置的value值每次增加10000，直到音频播放正常。</p>
+<p>此参数的意义为将音频暂存时长由默认的800000调整到你需要的数字，从而降低音频延迟。</p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L3FbV.png" alt="System Options"></p>
+<h2 id="启动osu-并开始刷PP"><a href="#启动osu-并开始刷PP" class="headerlink" title="启动osu! 并开始刷PP"></a>启动osu! 并开始刷PP</h2><p>能够正常到达这步基本上没有什么问题了，音频延迟已经解决，游戏正常运行，性能或许比Windows下还要好一些。</p>
+<hr>
+<p>下面的一些相关问题是我自己个人的需求而出现的，也有一些是性能和文件路径上的问题，各位有兴趣可继续查看下去，或许可以帮到你。</p>
+<h1 id="疑难解答"><a href="#疑难解答" class="headerlink" title="疑难解答"></a>疑难解答</h1><ul>
+<li><p>为什么我明明使用的是144Hz或者高刷的显示屏，系统显示选项也设置了相应最高刷新率，但是 osu! 依旧处于60Hz锁死的现象？</p>
+<p>可能你体感上能感觉到osu!确实是在60Hz下面运行的，即使是修改osu!里面的帧率限制到无限制，也没有什么作用。实际是默认使用的定制Wine构建的缘故，解决方案请参阅<strong>PooN的音频延迟调整方案</strong>的<a href="#%E6%9B%B4%E6%8D%A2Lutris%E7%9A%84Wine%E6%9E%84%E5%BB%BA%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89">第1步</a>。</p>
+<p>一般来说重启Lutris后打开osu! ，osu! 将会正常按照屏幕标准最高刷新率进行运行。</p>
+</li>
+</ul>
+<ul>
+<li><p>我该如何在Linux下使用我的数位板进行游玩？</p>
+<p>  在Linux下个人推荐使用<code>OpenTabletDriver</code>进行数位板连接。这是一个开源、跨平台、可用户自定义的数位板驱动，类似于Windows下的TabletDriver（但TD已经不更新了），比TD功能更强，支持更新的数位板，开发者对Debian系和ArchLinux的安装进行了简化。安装向导：</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#安装向导</span>
+https://github.com/OpenTabletDriver/OpenTabletDriver/wiki/Installation-Guide
+
+<span class="token comment">#常见问题解决方法（包括使用数位板时多个光标同时出现的问题）</span>
+https://github.com/OpenTabletDriver/OpenTabletDriver/wiki/Linux-FAQ<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>  <img src="https://z3.ax1x.com/2021/10/03/4L3EUU.png" alt="OpenTabletDriver"></p>
+</li>
+<li><p>osu!的安装路径在哪里？我该如何把下载或已存在的谱面进行加载？</p>
+<p>  osu! 的安装路径默认位于：<code>~/Games/osu/drive_c/osu </code>，想要加载谱面请将谱面下载到osu! 文件夹下的songs目录中，或者直接氪金买撒泼特，下载完成后进入游戏按F5刷新谱面。</p>
+<p>  另外如果你是处于双系统的状态或本身有songs文件夹，可以在Linux下的osu!文件夹中建立对其他设备下osu!文件夹songs的链接，但是前提是，若设备是NTFS格式磁盘，需要使用ntfs-3g和相应用户组权限参数进行挂载，否则会出现无法读写问题。</p>
+<p>  <img src="https://z3.ax1x.com/2021/10/03/4L3V5F.png" alt="此处我对windows下面的songs和skins挂载而来，不用自己移动过来"></p>
+</li>
+<li><p>osu!里面出现日文，韩文全都是框框的现象？</p>
+<p>  是由于Wine或Linux中缺少Windows下的日语，韩语等字体而导致的，下面有两种解决方案。</p>
+<ol>
+<li><p><strong>为osu!运行的Wine虚拟盘安装cjkfonts组件</strong></p>
+<p>是不是忘记安装<code>cjkfonts</code>和<code>gdiplus</code>组件了呢？<code>cjkfonts</code>是包含有中日韩亚洲字体的组件包，<code>gdiplus</code>能解决箭头文本问题，在终端执行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">WINE</span><span class="token operator">=</span>/opt/wine-osu/bin/wine <span class="token assign-left variable">WINEPREFIX</span><span class="token operator">=~</span>/.wineosu winetricks cjkfonts gdiplus<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>一般而言执行该操作后，字体将会正常，如仍有问题请参考方案2。</p>
+</li>
+<li><p><strong>在Linux的fonts文件夹添加Windows下的字体</strong></p>
+<p>如果你是双系统，你可以将Windows文件夹下的fonts文件复制到 <code>/usr/share/fonts/WindowsFonts</code> 下，并执行<code>chmod -R 755 /usr/share/fonts/WindowsFonts</code>，需要使用sudo权限执行。</p>
+<p>命令如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> -r mnt/mountd/Windows/Fonts /usr/share/fonts/WindowsFonts
+
+<span class="token function">sudo</span> <span class="token function">chmod</span> -R <span class="token number">755</span> /usr/share/fonts/WindowsFonts
+
+<span class="token function">sudo</span> fc-cache -f<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果不是双系统则需要自行从iso中提取字体出来，相对麻烦。我自己是不打韩语，俄语等歌曲的，所以我并没有将所有字体放到WindowsFonts中，而是简单提取了3个有日语的字体使用，这3个字体我打了包放到蓝奏盘上面给大家方便下载：<a target="_blank" rel="noopener" href="https://blacksand.lanzoui.com/iEV1Vqr5ybi">蓝奏云</a></p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L3eC4.png" alt="meiryo.ttc msgothic.ttc msmincho.ttc"></p>
+</li>
+</ol>
+</li>
+<li><p>我想录视频或者直播，甚至想要能看到PP计数器那种，我该如何操作？为什么我的pp计数器无法正确读取到osu! 进程？</p>
+<p>录视频和直播请使用<code>obs-studio</code>，功能非常强大的推流和录制软件。obs官方的安装教程地址：<a target="_blank" rel="noopener" href="https://obsproject.com/wiki/install-instructions#linux">https://obsproject.com/wiki/install-instructions#linux</a></p>
+<p>你也可自行构建：<a target="_blank" rel="noopener" href="https://obsproject.com/wiki/Install-Instructions#linux-build-directions">https://obsproject.com/wiki/Install-Instructions#linux-build-directions</a></p>
+<p>注意：在ArchLinux的仓库中，默认安装的obs-studio v27不包含有浏览器源，所以此处请用AUR源的<code>obs-studio-tytan652</code>，这位老哥打的包能够自动帮助构建浏览器源和obs-studio。</p>
+<p><img src="https://i.loli.net/2021/10/17/QLiraGJu2EkfOb6.png" alt="OBS-studio界面"></p>
+<p>PP计数器请使用<code>gousmemory</code>，它是一个轻量的，可配合obs浏览器源插件使用的软件：<a target="_blank" rel="noopener" href="https://github.com/l3lackShark/gosumemory">https://github.com/l3lackShark/gosumemory</a></p>
+<p>解压后修改目录下的config.ini文件，请指定<code>Path=[songs文件夹路径]</code>，将 <code>Wine=false</code> 改为 <code>Wine=true</code> ，执行时需要sudo权限，否则将无法正常读取wine中osu!的内存信息和歌曲信息。启动后，程序会显示本地服务器链接，输入链接到浏览器可查看各种样式。</p>
+<p><img src="https://z3.ax1x.com/2021/10/03/4L3QDx.png" alt="img"></p>
+<p>注意：gosumemory至少需要 osu! 运行的Wine中安装有.net 4.5版本及以上才能正常读取 osu! 进程并工作，而在Wine6.0版本后安装<code>dotnet45</code>及以上版本，会报错无法运行安装程序，此时需为你的osu!Wine虚拟盘执行强制安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 此处以dotnet45为例，安装将不会完全执行，但安装的组件足够为gosumemory提供运行环境</span>
+<span class="token assign-left variable">WINE</span><span class="token operator">=</span>/opt/wine-osu/bin/wine <span class="token assign-left variable">WINEPREFIX</span><span class="token operator">=~</span>/.wineosu winetricks -q -f dotnet45<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>若使用Lutris内建提供的Wine构建，则不需要上述操作。（因为Lutris提供的Wine构建相对较老，且dotnet45已自动安装）</p>
+</li>
+<li><p>如何对显示屏超频或更改显示屏的gamma？</p>
+<p>  <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv12671950">Linux下游玩 osu! 修改Gamma值以及显示器刷新率超频备忘、指北 - BiliBili专栏</a></p>
+</li>
+<li><p>什么是音频兼容模式？</p>
+<p> 请查看PooN方案中的第二步：<a href="#%E5%90%AF%E7%94%A8osu%E7%9A%84%E9%9F%B3%E9%A2%91%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F">点此处跳转</a></p>
+</li>
+<li><p>为什么 osu! WinePrefix初始化中使用dotnet45而不是dotnet40？</p>
+<p> 部分朋友使用<code>dotnet40</code>会有：0148:fixme:path:parse_url failed to parse LSystem.Runtime.Remoting.resources 报错，无法启动 osu! </p>
+<p> 初步推断是ppy升级了 osu! 的.net要求。<br> <code>dotnet45</code>将不会完全安装，这是wine6版本后的bug，如持续出现：01f4:fixme:ole:thread_context_callback_ContextCallback 05037D0C, 01DD7011, 04E9FA94, {d7174f82-36b8-4aa8-800a-e963ab2dfab9}, 2, 00000000 等类似日志错误，则可以按ctrl+c中断。如无法中断请使用系统监视器等软件包处理ms开头的.exe进程即可。 </p>
+</li>
+</ul>
+<hr>
+<h1 id="相关参考链接"><a href="#相关参考链接" class="headerlink" title="相关参考链接"></a>相关参考链接</h1><ul>
+<li><p><a target="_blank" rel="noopener" href="https://blog.thepoon.fr/osuLinuxAudioLatency">Low-latency osu! on Linux – ThePooN Blog</a>  #有关音频延迟的原因和补丁的实现</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://dwz.mk/NFrYrq">Linux lutris low latency osu! [GUIDE] – reddit</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://osu.ppy.sh/community/forums/topics/367783">Ultimate guide to low-latency osu! on Linux (rev.12) – osu! forum</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://bugs.archlinux.org/task/66008">FS66008 - [obs-studio] Add support for the official browser plugin</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/User:Katoumegumi">User:Katoumegumi - Arch Wiki</a></p>
+</li>
+</ul>
+<hr>
+<h1 id="感谢和其他"><a href="#感谢和其他" class="headerlink" title="感谢和其他"></a>感谢和其他</h1><p>感谢stllok小曲奇的帮助，我在群里问问题的时候都很热情的回答了我qwq，也是他我才开始真的想用ArchLinux日用；</p>
+<p>感谢ArchLinux的这个Wiki平台，详尽的信息让我走了很少弯路；</p>
+<p>非常感谢PooN的补丁、文章以及PooN的discord帖子，让在Linux下低延迟进行osu!的游玩成为了可能。</p>
+<p>如果文章有什么问题的话请提出，我会进行修正。后面的相关问题什么时候我想到有比较重要的会进行补充，有问题也可以问一下，或许我可能会帮到你。毕竟我做什么事情都会踩很多坑的人（悲），而且我只是站在巨人的肩膀上（谦虚义）才写出来的这篇文章。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/B1ackSand">B1ackSand</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blacksand.top/2021/10/02/Linux下使用Lutris安装并游玩低延迟音频osu!%20相关指北/">https://blacksand.top/2021/10/02/Linux下使用Lutris安装并游玩低延迟音频osu! 相关指北/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">此文章版权归B1ackSand所有，如有转载，请注明来自原作者</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/osu/">osu</a><a class="post-meta__tags" href="/tags/Wine/">Wine</a><a class="post-meta__tags" href="/tags/Game/">Game</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/10/09/a9oj4NRX6F1PleY.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/08/%E5%A6%82%E4%BD%95%E5%9C%A8ArchLinux%E4%B8%8A%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E8%99%9A%E6%8B%9F%E5%8C%96Win10/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">如何在ArchLinux上安装KVM并虚拟化Win10</div></div></a></div><div class="next-post pull-right"><a href="/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/"><img class="next-cover" src="https://z3.ax1x.com/2021/10/08/59y6SK.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SpringBoot下处理跨域请求</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/08/25/%E8%AE%A9Galgame%E5%9C%A8ArchLinux%E9%80%9A%E8%BF%87Wine%E6%AD%A3%E7%A1%AE%E8%BF%90%E8%A1%8C/" title="让Galgame在ArchLinux通过Wine正确运行"><img class="cover" src="https://z3.ax1x.com/2021/08/25/hESU4H.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-25</div><div class="title">让Galgame在ArchLinux通过Wine正确运行</div></div></a></div><div><a href="/2021/09/07/Linux%E4%B8%8Bmysql%E5%AF%BC%E5%87%BA.sql%E6%96%87%E4%BB%B6/" title="Linux下mysql导出.sql文件"><img class="cover" src="https://z3.ax1x.com/2021/10/08/59yDF1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-07</div><div class="title">Linux下mysql导出.sql文件</div></div></a></div><div><a href="/2021/10/18/fcitx5-rime%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E7%82%B9%E8%A7%A3%E5%86%B3%E7%AE%80%E8%A6%81/" title="fcitx5-rime个人配置以及踩坑点解决简要"><img class="cover" src="https://i.loli.net/2021/10/18/AGszuCDQZy1H5hp.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-18</div><div class="title">fcitx5-rime个人配置以及踩坑点解决简要</div></div></a></div><div><a href="/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/" title="使用GVT-g将IGPU传递给KVM"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-08</div><div class="title">使用GVT-g将IGPU传递给KVM</div></div></a></div><div><a href="/2021/10/08/%E5%A6%82%E4%BD%95%E5%9C%A8ArchLinux%E4%B8%8A%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E8%99%9A%E6%8B%9F%E5%8C%96Win10/" title="如何在ArchLinux上安装KVM并虚拟化Win10"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-08</div><div class="title">如何在ArchLinux上安装KVM并虚拟化Win10</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://z3.ax1x.com/2021/08/25/hAzJYj.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">BlackSand</div><div class="author-info__description">OwO</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/B1ackSand" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:peilanfengfeng@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">茫茫人海有缘相逢</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E5%86%B5"><span class="toc-number">1.</span> <span class="toc-text">概况</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFWine%E5%92%8CLutris"><span class="toc-number">2.1.</span> <span class="toc-text">什么是Wine和Lutris</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Lutris"><span class="toc-number">2.2.</span> <span class="toc-text">安装Lutris</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CLutris%EF%BC%8C%E5%AE%89%E8%A3%85osu"><span class="toc-number">2.3.</span> <span class="toc-text">运行Lutris，安装osu!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E8%B0%83%E6%95%B4"><span class="toc-number">2.4.</span> <span class="toc-text">优化调整</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E5%BB%B6%E8%BF%9F%E4%BF%AE%E6%AD%A3"><span class="toc-number">3.</span> <span class="toc-text">音频延迟修正</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gonX%E7%9A%84%E9%9F%B3%E9%A2%91%E5%BB%B6%E8%BF%9F%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88"><span class="toc-number">4.</span> <span class="toc-text">gonX的音频延迟调整方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8Epulseaudio%E8%BF%81%E7%A7%BB%E5%88%B0pipewire-%E5%BC%BA%E7%83%88%E5%BB%BA%E8%AE%AE"><span class="toc-number">4.1.</span> <span class="toc-text">从pulseaudio迁移到pipewire (强烈建议)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85gonX%E7%9A%84Wine%E6%9E%84%E5%BB%BA"><span class="toc-number">4.2.</span> <span class="toc-text">下载并安装gonX的Wine构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AESAP-SAD%EF%BC%88%E9%92%88%E5%AF%B9pulseaudio%E7%94%A8%E6%88%B7%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">设置SAP&#x2F;SAD（针对pulseaudio用户）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96osu-Wine%E8%99%9A%E6%8B%9F%E7%9B%98%EF%BC%88%E5%8D%B3WINEPREFIX%EF%BC%89%EF%BC%8C%E4%BD%BF%E7%94%A8winetricks%E5%AE%89%E8%A3%85%E8%BF%90%E8%A1%8C%E7%BB%84%E4%BB%B6"><span class="toc-number">4.4.</span> <span class="toc-text">初始化osu! Wine虚拟盘（即WINEPREFIX），使用winetricks安装运行组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AELutris-%E7%9A%84Wine-Prefix%EF%BC%8C%E5%B0%9D%E8%AF%95%E5%90%AF%E5%8A%A8osu"><span class="toc-number">4.5.</span> <span class="toc-text">配置Lutris 的Wine Prefix，尝试启动osu!</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PooN%E7%9A%84%E9%9F%B3%E9%A2%91%E5%BB%B6%E8%BF%9F%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88"><span class="toc-number">5.</span> <span class="toc-text">PooN的音频延迟调整方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2Lutris%E7%9A%84Wine%E6%9E%84%E5%BB%BA%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">更换Lutris的Wine构建（可选）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E7%94%A8osu%E7%9A%84%E9%9F%B3%E9%A2%91%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.2.</span> <span class="toc-text">启用osu的音频兼容模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E9%9F%B3%E9%A2%91%E9%A9%B1%E5%8A%A8%E8%A1%A5%E4%B8%81%EF%BC%88%E7%94%B1PooN%E6%8F%90%E4%BE%9B%EF%BC%89"><span class="toc-number">5.3.</span> <span class="toc-text">下载音频驱动补丁（由PooN提供）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B0%83%E6%95%B4"><span class="toc-number">5.4.</span> <span class="toc-text">音频相关配置文件调整</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lutris%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0%E8%B0%83%E6%95%B4"><span class="toc-number">5.5.</span> <span class="toc-text">Lutris相关参数调整</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8osu-%E5%B9%B6%E5%BC%80%E5%A7%8B%E5%88%B7PP"><span class="toc-number">5.6.</span> <span class="toc-text">启动osu! 并开始刷PP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94"><span class="toc-number">6.</span> <span class="toc-text">疑难解答</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">7.</span> <span class="toc-text">相关参考链接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%84%9F%E8%B0%A2%E5%92%8C%E5%85%B6%E4%BB%96"><span class="toc-number">8.</span> <span class="toc-text">感谢和其他</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/10/18/fcitx5-rime%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E7%82%B9%E8%A7%A3%E5%86%B3%E7%AE%80%E8%A6%81/" title="fcitx5-rime个人配置以及踩坑点解决简要"><img src="https://i.loli.net/2021/10/18/AGszuCDQZy1H5hp.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="fcitx5-rime个人配置以及踩坑点解决简要"/></a><div class="content"><a class="title" href="/2021/10/18/fcitx5-rime%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E7%82%B9%E8%A7%A3%E5%86%B3%E7%AE%80%E8%A6%81/" title="fcitx5-rime个人配置以及踩坑点解决简要">fcitx5-rime个人配置以及踩坑点解决简要</a><time datetime="2021-10-18T06:18:25.000Z" title="发表于 2021-10-18 14:18:25">2021-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/" title="使用GVT-g将IGPU传递给KVM"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用GVT-g将IGPU传递给KVM"/></a><div class="content"><a class="title" href="/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/" title="使用GVT-g将IGPU传递给KVM">使用GVT-g将IGPU传递给KVM</a><time datetime="2021-10-07T19:42:11.000Z" title="发表于 2021-10-08 03:42:11">2021-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/08/%E5%A6%82%E4%BD%95%E5%9C%A8ArchLinux%E4%B8%8A%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E8%99%9A%E6%8B%9F%E5%8C%96Win10/" title="如何在ArchLinux上安装KVM并虚拟化Win10"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何在ArchLinux上安装KVM并虚拟化Win10"/></a><div class="content"><a class="title" href="/2021/10/08/%E5%A6%82%E4%BD%95%E5%9C%A8ArchLinux%E4%B8%8A%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E8%99%9A%E6%8B%9F%E5%8C%96Win10/" title="如何在ArchLinux上安装KVM并虚拟化Win10">如何在ArchLinux上安装KVM并虚拟化Win10</a><time datetime="2021-10-07T19:42:11.000Z" title="发表于 2021-10-08 03:42:11">2021-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/" title="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北"><img src="https://i.loli.net/2021/10/09/a9oj4NRX6F1PleY.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北"/></a><div class="content"><a class="title" href="/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/" title="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北">Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北</a><time datetime="2021-10-02T10:35:02.000Z" title="发表于 2021-10-02 18:35:02">2021-10-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/" title="SpringBoot下处理跨域请求"><img src="https://z3.ax1x.com/2021/10/08/59y6SK.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot下处理跨域请求"/></a><div class="content"><a class="title" href="/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/" title="SpringBoot下处理跨域请求">SpringBoot下处理跨域请求</a><time datetime="2021-09-12T07:37:40.000Z" title="发表于 2021-09-12 15:37:40">2021-09-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By BlackSand</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44010602009735"><img class="icp-icon" src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png"><span>粤公网安备44010602009735号</span></a> <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><span>粤ICP备2021141794号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

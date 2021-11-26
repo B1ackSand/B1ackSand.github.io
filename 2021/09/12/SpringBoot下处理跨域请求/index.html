@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SpringBoot下处理跨域请求 | 砂糖砂糖沙</title><meta name="keywords" content="Program,SpringBoot,Java"><meta name="author" content="BlackSand"><meta name="copyright" content="BlackSand"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、前言什么是跨域请求？Url的一般格式： 协议 + 域名（子域名 + 主域名） + 端口号 + 资源地址  示例： https:&#x2F;&#x2F;www.blacksand.top:8080&#x2F;say&#x2F;Hello 是由  https + www + blacksand.top + 8080 + say&#x2F;Hello 组成   组成。 只要协议，子域名，主域名，端口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot下处理跨域请求">
+<meta property="og:url" content="https://blacksand.top/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/index.html">
+<meta property="og:site_name" content="砂糖砂糖沙">
+<meta property="og:description" content="一、前言什么是跨域请求？Url的一般格式： 协议 + 域名（子域名 + 主域名） + 端口号 + 资源地址  示例： https:&#x2F;&#x2F;www.blacksand.top:8080&#x2F;say&#x2F;Hello 是由  https + www + blacksand.top + 8080 + say&#x2F;Hello 组成   组成。 只要协议，子域名，主域名，端口">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/08/59y6SK.jpg">
+<meta property="article:published_time" content="2021-09-12T07:37:40.000Z">
+<meta property="article:modified_time" content="2021-10-07T19:51:59.219Z">
+<meta property="article:author" content="BlackSand">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/10/08/59y6SK.jpg"><link rel="shortcut icon" href="https://z3.ax1x.com/2021/08/25/hVEj1O.png"><link rel="canonical" href="https://blacksand.top/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f7ed7b115e64d8cb67cfaf4304528b62";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-W6GTX3NX77"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-W6GTX3NX77');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SpringBoot下处理跨域请求',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-08 03:51:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/color.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z3.ax1x.com/2021/08/25/hAzJYj.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://z3.ax1x.com/2021/10/08/59y6SK.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">砂糖砂糖沙</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SpringBoot下处理跨域请求</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-12T07:37:40.000Z" title="发表于 2021-09-12 15:37:40">2021-09-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-07T19:51:59.219Z" title="更新于 2021-10-08 03:51:59">2021-10-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Program/">Program</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SpringBoot下处理跨域请求"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><h3 id="什么是跨域请求？"><a href="#什么是跨域请求？" class="headerlink" title="什么是跨域请求？"></a>什么是跨域请求？</h3><p><code>Url</code>的一般格式：</p>
+<pre class="line-numbers language-none"><code class="language-none">协议 + 域名（子域名 + 主域名） + 端口号 + 资源地址<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>示例：</p>
+<pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;www.blacksand.top:8080&#x2F;say&#x2F;Hello 是由
+
+https + www + blacksand.top + 8080 + say&#x2F;Hello 组成<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p> 组成。</p>
+<pre class="line-numbers language-none"><code class="language-none">只要协议，子域名，主域名，端口号这四项组成部分中有一项不同，就可以认为是不同的域，不同的域之间互相访问资源，就被称之为跨域。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="二、Cors跨域"><a href="#二、Cors跨域" class="headerlink" title="二、Cors跨域"></a>二、Cors跨域</h2><h3 id="Cors是什么"><a href="#Cors是什么" class="headerlink" title="Cors是什么"></a>Cors是什么</h3><pre class="line-numbers language-none"><code class="language-none">CORS全称为Cross Origin Resource Sharing（跨域资源共享）, 每一个页面需要返回一个名为Access-Control-Allow-Origin的http头来允许外域的站点访问，你可以仅仅暴露有限的资源和有限的外域站点访问。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p> 我们可以理解为：如果一个请求需要允许跨域访问，则需要在<code>http</code>头中设置</p>
+<pre class="line-numbers language-none"><code class="language-none">Access-Control-Allow-Origin来决定需要允许哪些站点来访问。如假设需要允许https:&#x2F;&#x2F;www.blacksand.top这个站点的请求跨域，则可以设置：
+
+Access-Control-Allow-Origin:https:&#x2F;&#x2F;www.blacksand.top<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="如何解决Cors跨域"><a href="#如何解决Cors跨域" class="headerlink" title="如何解决Cors跨域"></a>如何解决Cors跨域</h3><h4 id="1-用-CrossOrigin注解"><a href="#1-用-CrossOrigin注解" class="headerlink" title="1. 用@CrossOrigin注解"></a>1. 用<code>@CrossOrigin</code>注解</h4><p>在<code>Controller</code>上使用<code>@CrossOrigin</code>注解使得该类下的所有接口都可以通过跨域访问。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@CrossOrigin</span>
+<span class="token comment">//@CrossOrigin("https://blacksand.top") //只有指定域名可以访问该类下所有接口</span>
+<span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/question"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Api</span><span class="token punctuation">(</span>tags <span class="token operator">=</span> <span class="token string">"题目控制器"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuestionController</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Resource</span>
+    <span class="token keyword">private</span> <span class="token class-name">IQuestionService</span> questionService<span class="token punctuation">;</span>
+
+    <span class="token comment">/*
+     * 测试接口
+     * @return "hello"
+     * */</span>
+
+    <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span><span class="token string">"测试接口"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/hello"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里指定当前的<code>QuestionController</code>中所有的方法可以处理<code>https://blacksand.top</code>域上的请求,这里可以在访问<code>https://blacksand.top</code>时，打开浏览器的Console中测试一下</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> token<span class="token operator">=</span> <span class="token string">"LtSFVqKxvpS1nPARxS2lpUs2Q2IpGstidMrS8zMhNV3rT7RKnhLN6d2FFirkVEzVIeexgEHgI/PtnynGqjZlyGkJa4+zYIXxtDMoK/N+AB6wtsskYXereH3AR8kWErwIRvx+UOFveH3dgmdw1347SYjbL/ilGKX5xkoZCbfb1f0=,LZkg22zbNsUoHAgAUapeBn541X5OHUK7rLVNHsHWDM/BA4DCIP1f/3Bnu4GAElQU6cds/0fg9Li5cSPHe8pyhr1Ii/TNcUYxqHMf9bHyD6ugwOFTfvlmtp6RDopVrpG24RSjJbWy2kUOOjjk5uv6FUTmbrSTVoBEzAXYKZMM2m4=,R4QeD2psvrTr8tkBTjnnfUBw+YR4di+GToGjWYeR7qZk9hldUVLlZUsEEPWjtBpz+UURVmplIn5WM9Ge29ft5aS4oKDdPlIH8kWNIs9Y3r9TgH3MnSUTGrgayaNniY9Ji5wNZiZ9cE2CFzlxoyuZxOcSVfOxUw70ty0ukLVM/78="</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'http://127.0.0.1:8080/answer/hello'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">setRequestHeader</span><span class="token punctuation">(</span><span class="token string">"x-access-token"</span><span class="token punctuation">,</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> xhr <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>responseText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果Console返回Hello，说明跨域成功。</p>
+<h4 id="2-CORS全局配置-实现WebMvcConfigurer"><a href="#2-CORS全局配置-实现WebMvcConfigurer" class="headerlink" title="2. CORS全局配置-实现WebMvcConfigurer"></a>2. CORS全局配置-实现<code>WebMvcConfigurer</code></h4><ul>
+<li><p>新建跨域配置类：<code>CorsConfig.java</code>:</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * 跨域配置
+ */</span>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CorsConfig</span> <span class="token keyword">implements</span> <span class="token class-name">WebMvcConfigurer</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">WebMvcConfigurer</span> <span class="token function">corsConfigurer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">WebMvcConfigurer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addCorsMappings</span><span class="token punctuation">(</span><span class="token class-name">CorsRegistry</span> registry<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                registry<span class="token punctuation">.</span><span class="token function">addMapping</span><span class="token punctuation">(</span><span class="token string">"/**"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
+                        <span class="token function">allowedOrigins</span><span class="token punctuation">(</span><span class="token string">"https://www.blacksand.top"</span><span class="token punctuation">)</span><span class="token punctuation">.</span> <span class="token comment">//允许跨域的域名，可以用*表示允许任何域名使用</span>
+                        <span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">.</span> <span class="token comment">//允许任何方法（post、get等）</span>
+                        <span class="token function">allowedHeaders</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">.</span> <span class="token comment">//允许任何请求头</span>
+                        <span class="token function">allowCredentials</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">.</span> <span class="token comment">//带上cookie信息，如允许任何域名跨域则需为false</span>
+                        <span class="token function">exposedHeaders</span><span class="token punctuation">(</span><span class="token class-name">HttpHeaders</span><span class="token punctuation">.</span>SET_COOKIE<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">maxAge</span><span class="token punctuation">(</span><span class="token number">3600L</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//maxAge(3600)表明在3600秒内，不需要再发送预检验请求，可以缓存该结果</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<ul>
+<li>同样进行上面的测试，查看是否返回Hello。</li>
+</ul>
+<h4 id="3-拦截器Filter实现"><a href="#3-拦截器Filter实现" class="headerlink" title="3. 拦截器Filter实现"></a>3. 拦截器Filter实现</h4><p>通过实现<code>Fiter</code>接口在请求中添加一些<code>Header</code>来解决跨域的问题。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CorsFilter</span> <span class="token keyword">implements</span> <span class="token class-name">Filter</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span><span class="token class-name">ServletRequest</span> request<span class="token punctuation">,</span> <span class="token class-name">ServletResponse</span> response<span class="token punctuation">,</span> <span class="token class-name">FilterChain</span> chain<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">ServletException</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">HttpServletResponse</span> res <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">HttpServletResponse</span><span class="token punctuation">)</span> response<span class="token punctuation">;</span>
+        res<span class="token punctuation">.</span><span class="token function">addHeader</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Credentials"</span><span class="token punctuation">,</span> <span class="token string">"true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">.</span><span class="token function">addHeader</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Origin"</span><span class="token punctuation">,</span> <span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">.</span><span class="token function">addHeader</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Methods"</span><span class="token punctuation">,</span> <span class="token string">"GET, POST, DELETE, PUT"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        res<span class="token punctuation">.</span><span class="token function">addHeader</span><span class="token punctuation">(</span><span class="token string">"Access-Control-Allow-Headers"</span><span class="token punctuation">,</span> <span class="token string">"Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span><span class="token punctuation">)</span> request<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"OPTIONS"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            response<span class="token punctuation">.</span><span class="token function">getWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ok"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        chain<span class="token punctuation">.</span><span class="token function">doFilter</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">FilterConfig</span> filterConfig<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">ServletException</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>至此,跨域请求就完成了。</p>
+<h2 id="三、参考链接"><a href="#三、参考链接" class="headerlink" title="三、参考链接"></a>三、参考链接</h2><pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;www.cnblogs.com&#x2F;zhaosq&#x2F;p&#x2F;11410682.html<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/B1ackSand">B1ackSand</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blacksand.top/2021/09/12/SpringBoot下处理跨域请求">https://blacksand.top/2021/09/12/SpringBoot下处理跨域请求</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">此文章版权归B1ackSand所有，如有转载，请注明来自原作者</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Program/">Program</a><a class="post-meta__tags" href="/tags/SpringBoot/">SpringBoot</a><a class="post-meta__tags" href="/tags/Java/">Java</a></div><div class="post_share"><div class="social-share" data-image="https://z3.ax1x.com/2021/10/08/59y6SK.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/"><img class="prev-cover" src="https://i.loli.net/2021/10/09/a9oj4NRX6F1PleY.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北</div></div></a></div><div class="next-post pull-right"><a href="/2021/09/07/Linux%E4%B8%8Bmysql%E5%AF%BC%E5%87%BA.sql%E6%96%87%E4%BB%B6/"><img class="next-cover" src="https://z3.ax1x.com/2021/10/08/59yDF1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux下mysql导出.sql文件</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/09/07/Linux%E4%B8%8Bmysql%E5%AF%BC%E5%87%BA.sql%E6%96%87%E4%BB%B6/" title="Linux下mysql导出.sql文件"><img class="cover" src="https://z3.ax1x.com/2021/10/08/59yDF1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-07</div><div class="title">Linux下mysql导出.sql文件</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://z3.ax1x.com/2021/08/25/hAzJYj.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">BlackSand</div><div class="author-info__description">OwO</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/B1ackSand" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:peilanfengfeng@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">茫茫人海有缘相逢</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">一、前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是跨域请求？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Cors%E8%B7%A8%E5%9F%9F"><span class="toc-number">2.</span> <span class="toc-text">二、Cors跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cors%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.1.</span> <span class="toc-text">Cors是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3Cors%E8%B7%A8%E5%9F%9F"><span class="toc-number">2.2.</span> <span class="toc-text">如何解决Cors跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%A8-CrossOrigin%E6%B3%A8%E8%A7%A3"><span class="toc-number">2.2.1.</span> <span class="toc-text">1. 用@CrossOrigin注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-CORS%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE-%E5%AE%9E%E7%8E%B0WebMvcConfigurer"><span class="toc-number">2.2.2.</span> <span class="toc-text">2. CORS全局配置-实现WebMvcConfigurer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8B%A6%E6%88%AA%E5%99%A8Filter%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.3.</span> <span class="toc-text">3. 拦截器Filter实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">三、参考链接</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/10/18/fcitx5-rime%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E7%82%B9%E8%A7%A3%E5%86%B3%E7%AE%80%E8%A6%81/" title="fcitx5-rime个人配置以及踩坑点解决简要"><img src="https://i.loli.net/2021/10/18/AGszuCDQZy1H5hp.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="fcitx5-rime个人配置以及踩坑点解决简要"/></a><div class="content"><a class="title" href="/2021/10/18/fcitx5-rime%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E7%82%B9%E8%A7%A3%E5%86%B3%E7%AE%80%E8%A6%81/" title="fcitx5-rime个人配置以及踩坑点解决简要">fcitx5-rime个人配置以及踩坑点解决简要</a><time datetime="2021-10-18T06:18:25.000Z" title="发表于 2021-10-18 14:18:25">2021-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/" title="使用GVT-g将IGPU传递给KVM"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用GVT-g将IGPU传递给KVM"/></a><div class="content"><a class="title" href="/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/" title="使用GVT-g将IGPU传递给KVM">使用GVT-g将IGPU传递给KVM</a><time datetime="2021-10-07T19:42:11.000Z" title="发表于 2021-10-08 03:42:11">2021-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/08/%E5%A6%82%E4%BD%95%E5%9C%A8ArchLinux%E4%B8%8A%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E8%99%9A%E6%8B%9F%E5%8C%96Win10/" title="如何在ArchLinux上安装KVM并虚拟化Win10"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何在ArchLinux上安装KVM并虚拟化Win10"/></a><div class="content"><a class="title" href="/2021/10/08/%E5%A6%82%E4%BD%95%E5%9C%A8ArchLinux%E4%B8%8A%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E8%99%9A%E6%8B%9F%E5%8C%96Win10/" title="如何在ArchLinux上安装KVM并虚拟化Win10">如何在ArchLinux上安装KVM并虚拟化Win10</a><time datetime="2021-10-07T19:42:11.000Z" title="发表于 2021-10-08 03:42:11">2021-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/" title="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北"><img src="https://i.loli.net/2021/10/09/a9oj4NRX6F1PleY.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北"/></a><div class="content"><a class="title" href="/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/" title="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北">Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北</a><time datetime="2021-10-02T10:35:02.000Z" title="发表于 2021-10-02 18:35:02">2021-10-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/" title="SpringBoot下处理跨域请求"><img src="https://z3.ax1x.com/2021/10/08/59y6SK.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot下处理跨域请求"/></a><div class="content"><a class="title" href="/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/" title="SpringBoot下处理跨域请求">SpringBoot下处理跨域请求</a><time datetime="2021-09-12T07:37:40.000Z" title="发表于 2021-09-12 15:37:40">2021-09-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By BlackSand</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44010602009735"><img class="icp-icon" src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png"><span>粤公网安备44010602009735号</span></a> <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><span>粤ICP备2021141794号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

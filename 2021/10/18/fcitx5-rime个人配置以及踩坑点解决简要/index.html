@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>fcitx5-rime个人配置以及踩坑点解决简要 | 砂糖砂糖沙</title><meta name="keywords" content="Linux"><meta name="author" content="BlackSand"><meta name="copyright" content="BlackSand"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="为什么要这么做?初心真的非常非常单纯，就是因为有拼音显示，而且很方便打emoji出来，而fcitx5怎么搞都搞不出来。 就是这个样一个东西：  入门# yay -S fcitx5-rime noto-fonts-emoji    fcitx5-rime的配置文件位置：~&#x2F;.local&#x2F;share&#x2F;fcitx5&#x2F;rime&#x2F; 如果没有文件夹的话，需要自己建立 $ mkdir ~&#x2F;.local">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fcitx5-rime个人配置以及踩坑点解决简要">
+<meta property="og:url" content="https://blacksand.top/2021/10/18/fcitx5-rime%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E7%82%B9%E8%A7%A3%E5%86%B3%E7%AE%80%E8%A6%81/index.html">
+<meta property="og:site_name" content="砂糖砂糖沙">
+<meta property="og:description" content="为什么要这么做?初心真的非常非常单纯，就是因为有拼音显示，而且很方便打emoji出来，而fcitx5怎么搞都搞不出来。 就是这个样一个东西：  入门# yay -S fcitx5-rime noto-fonts-emoji    fcitx5-rime的配置文件位置：~&#x2F;.local&#x2F;share&#x2F;fcitx5&#x2F;rime&#x2F; 如果没有文件夹的话，需要自己建立 $ mkdir ~&#x2F;.local">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/10/18/AGszuCDQZy1H5hp.png">
+<meta property="article:published_time" content="2021-10-18T06:18:25.000Z">
+<meta property="article:modified_time" content="2021-10-18T06:24:34.879Z">
+<meta property="article:author" content="BlackSand">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/10/18/AGszuCDQZy1H5hp.png"><link rel="shortcut icon" href="https://z3.ax1x.com/2021/08/25/hVEj1O.png"><link rel="canonical" href="https://blacksand.top/2021/10/18/fcitx5-rime%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E7%82%B9%E8%A7%A3%E5%86%B3%E7%AE%80%E8%A6%81/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f7ed7b115e64d8cb67cfaf4304528b62";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-W6GTX3NX77"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-W6GTX3NX77');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'fcitx5-rime个人配置以及踩坑点解决简要',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-18 14:24:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/color.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://z3.ax1x.com/2021/08/25/hAzJYj.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/10/18/AGszuCDQZy1H5hp.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">砂糖砂糖沙</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">fcitx5-rime个人配置以及踩坑点解决简要</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-18T06:18:25.000Z" title="发表于 2021-10-18 14:18:25">2021-10-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-18T06:24:34.879Z" title="更新于 2021-10-18 14:24:34">2021-10-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="fcitx5-rime个人配置以及踩坑点解决简要"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="为什么要这么做"><a href="#为什么要这么做" class="headerlink" title="为什么要这么做?"></a>为什么要这么做?</h1><p>初心真的非常非常单纯，就是因为有拼音显示，而且很方便打emoji出来，而fcitx5怎么搞都搞不出来。</p>
+<p>就是这个样一个东西：</p>
+<p><img src="https://i.loli.net/2021/10/18/vMytx2NfKI8cpVJ.png" alt="image-20211018131152913"></p>
+<h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># yay -S fcitx5-rime noto-fonts-emoji</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://archlinux.org/packages/?name=fcitx5-rime">fcitx5-rime</a>的配置文件位置：<code>~/.local/share/fcitx5/rime/</code></p>
+<p>如果没有文件夹的话，需要自己建立</p>
+<pre class="line-numbers language-none"><code class="language-none">$ mkdir ~&#x2F;.local&#x2F;share&#x2F;fcitx5&#x2F;rime&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="Clone别人配置好的项目"><a href="#Clone别人配置好的项目" class="headerlink" title="Clone别人配置好的项目"></a>Clone别人配置好的项目</h2><p>这里偷懒直接Clone的<a target="_blank" rel="noopener" href="https://github.com/wongdean/rime-settings">wongdean/rime-settings</a>，因为<a target="_blank" rel="noopener" href="https://github.com/rime/home/wiki/CustomizationGuide">rime官方</a>写的文档佛味和仙侠味实在是太浓了，佛到我看不明白：</p>
+<p><img src="https://i.loli.net/2021/10/18/sNl1POCoBq4f35Y.png" alt="image-20211018132602999"></p>
+<p>佛振写的rime真的挺好的，但是讲实话，看上面佛振的文档不如看下面这张图的文档：</p>
+<p><img src="https://i.loli.net/2021/10/18/rvqSTu1mwdR5zV3.png" alt="image-20211018133127687"></p>
+<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><p>要求其实很简单：我习惯在电脑上面用全拼输入；能将手机上养了3年多的Google拼音输入法的词库导入进来；能输入emoji；用 <code>,</code> 和 <code>.</code> 来翻页选词；广东人不熟悉拼音，有很高的模糊音需求。</p>
+<p>主要是修改<code>default.custom.yaml</code>，<code>luna_pinyin.custom.yaml</code>和<code>luna_pinyin.extended.dict.yaml</code></p>
+<h3 id="default-custom-yaml"><a href="#default-custom-yaml" class="headerlink" title="default.custom.yaml"></a>default.custom.yaml</h3><p>Clone下来的配置文件自带有小鹤双拼和全拼，这里最简单的方式就是直接注释掉小鹤双拼的配置文件即可，这样rime也不会对双拼进行编译。</p>
+<p>注意要遵循严格的<a target="_blank" rel="noopener" href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">yaml</a>格式。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">schema_list</span><span class="token punctuation">:</span>
+  <span class="token comment"># - schema: double_pinyin_flypy # 小鹤双拼</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">schema</span><span class="token punctuation">:</span> luna_pinyin <span class="token comment"># 全拼</span>
+  <span class="token comment"># - schema: double_pinyin # 自然码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>翻页选词的更改在<code>key_binder/bindings</code>这里我在冒号后的下一行加了：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">key_binder/bindings</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">accept</span><span class="token punctuation">:</span> <span class="token string">"comma"</span>
+    <span class="token key atrule">send</span><span class="token punctuation">:</span> <span class="token string">"Page_Up"</span>
+    <span class="token key atrule">when</span><span class="token punctuation">:</span> <span class="token string">"paging"</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">accept</span><span class="token punctuation">:</span> <span class="token string">"period"</span>
+    <span class="token key atrule">send</span><span class="token punctuation">:</span> <span class="token string">"Page_Down"</span>
+    <span class="token key atrule">when</span><span class="token punctuation">:</span> <span class="token string">"has_menu"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>还是喜欢展开出来的yaml样式。</p>
+<h3 id="luna-pinyin-custom-yaml"><a href="#luna-pinyin-custom-yaml" class="headerlink" title="luna_pinyin.custom.yaml"></a>luna_pinyin.custom.yaml</h3><p>要开始自定义词库，需要在<code>patch</code>下添加<code>translator/enable_user_dict</code></p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">patch</span><span class="token punctuation">:</span>
+  <span class="token comment"># 开启自定义词库</span>
+  <span class="token key atrule">"translator/enable_user_dict"</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>在模糊拼音<code>&#39;speller/algebra&#39;</code>中，我对<code>z/c/s</code>和<code>an/en/in</code>一概分不清，所以我修改成这样：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">'speller/algebra'</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> erase/^xx$/                      <span class="token comment"># 第一行保留</span>
+  <span class="token comment"># 模糊音定義</span>
+  <span class="token comment"># 需要哪組就刪去行首的 # 號，單雙向任選</span>
+  <span class="token punctuation">-</span> derive/^(<span class="token punctuation">[</span>zcs<span class="token punctuation">]</span>)h/$1/             <span class="token comment"># zh, ch, sh => z, c, s</span>
+  <span class="token punctuation">-</span> derive/^(<span class="token punctuation">[</span>zcs<span class="token punctuation">]</span>)(<span class="token punctuation">[</span>^h<span class="token punctuation">]</span>)/$1h$2/     <span class="token comment"># z, c, s => zh, ch, sh</span>
+    
+  <span class="token comment"># 韻母部份</span>
+  <span class="token comment">#- derive/^([bpmf])eng$/$1ong/      # meng = mong, ...</span>
+  <span class="token punctuation">-</span> derive/(<span class="token punctuation">[</span>aei<span class="token punctuation">]</span>)n$/$1ng/            <span class="token comment"># an => ang, en => eng, in => ing</span>
+  <span class="token punctuation">-</span> derive/(<span class="token punctuation">[</span>aei<span class="token punctuation">]</span>)ng$/$1n/            <span class="token comment"># ang => an, eng => en, ing => in</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="luna-pinyin-extended-dict-yaml"><a href="#luna-pinyin-extended-dict-yaml" class="headerlink" title="luna_pinyin.extended.dict.yaml"></a>luna_pinyin.extended.dict.yaml</h3><p>重头戏──自定义词库</p>
+<p>从其他输入法导入rime需要用到<a target="_blank" rel="noopener" href="https://github.com/studyzy/imewlconverter">studyzy/imewlconverter</a>，中文名为深蓝词库转换。</p>
+<p>手机谷歌拼音输入法的词库导出后，需要做一些预处理：将<strong>英文和阿拉伯数字开头</strong>的词语要删除，这些词深蓝是无法识别的，而且会破坏输出得到的词库。</p>
+<p>处理完后，我在aur中直接安装了深蓝词库转换的软件包，用ImeWlConverterCmd即可进行转换：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 这里是谷歌拼音输入法转到rime，-i:输入的词库类型 词库路径1 词库路径2 词库路径3 -o:输出的词库类型 输出词库路径</span>
+<span class="token comment"># -os:windows/macos/linux 设置相应系统</span>
+ImeWlConverterCmd -i:ggpy ./Downloads/user-dictionary.txt -o:rime ./.local/share/fcitx5/rime/luna_pinyin.google.dict.yaml <span class="token string">"-os:linux"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>其他发行版，了解更多相关转换请看深蓝词库转换的<a target="_blank" rel="noopener" href="https://github.com/studyzy/imewlconverter/wiki/CommandLine">wiki</a>。</p>
+<p>输出完成后，我们要对<code>luna_pinyin.google.dict.yaml</code>文件的第一行做一些字段添加：</p>
+<pre class="line-numbers language-none"><code class="language-none">---
+name: luna_pinyin.google # 注意修改这里的name
+version: &quot;2021.10.18&quot;
+sort: by_wight
+use_preset_vocabulary: false
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>保存后，对<code>luna_pinyin.extended.dict.yaml</code>编辑，添加我们刚才自定义的词库：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">import_tables</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> luna_pinyin
+  <span class="token punctuation">-</span> luna_pinyin.xiandaihanyu
+  <span class="token punctuation">-</span> luna_pinyin.chengyusuyu
+  <span class="token punctuation">-</span> luna_pinyin.popular
+  <span class="token punctuation">-</span> essay
+  <span class="token punctuation">-</span> luna_pinyin.computer
+  <span class="token punctuation">-</span> luna_pinyin.kaifa
+  <span class="token punctuation">-</span> luna_pinyin.poetry
+  <span class="token punctuation">-</span> luna_pinyin.chat
+  <span class="token punctuation">-</span> luna_pinyin.place
+  <span class="token punctuation">-</span> luna_pinyin.shopping
+  <span class="token punctuation">-</span> luna_pinyin.website
+  <span class="token punctuation">-</span> luna_pinyin.mingxing
+  <span class="token punctuation">-</span> zhwiki
+  <span class="token comment"># 这里是新加的</span>
+  <span class="token punctuation">-</span> luna_pinyin.google<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>右键重新部署输入法，查看是否可以用到自定义词库。</p>
+<h1 id="坑点"><a href="#坑点" class="headerlink" title="坑点"></a>坑点</h1><h2 id="Arch无法显示emoji表情"><a href="#Arch无法显示emoji表情" class="headerlink" title="Arch无法显示emoji表情"></a>Arch无法显示emoji表情</h2><ol>
+<li><p>安装noto-fonts包</p>
+<ol>
+<li></li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">local&#x2F;noto-fonts
+local&#x2F;noto-fonts-cjk
+local&#x2F;noto-fonts-emoji
+local&#x2F;noto-fonts-extra<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>安装完成之后用：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">fc-cache -vf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>刷新字体缓存。</p>
+</li>
+<li><p>修改<code>/etc/fonts/local.conf</code>，加入以下内容</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version='1.0'?></span>
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">fontconfig</span> <span class="token name">SYSTEM</span> <span class="token string">'fonts.dtd'</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fontconfig</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>match</span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>font<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>test</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>family<span class="token punctuation">"</span></span> <span class="token attr-name">compare</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>contains<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">></span></span>Noto Color Emoji<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>test</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>edit</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hinting<span class="token punctuation">"</span></span> <span class="token attr-name">mode</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>assign<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bool</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bool</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>edit</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>edit</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hintstyle<span class="token punctuation">"</span></span> <span class="token attr-name">mode</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>assign<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>const</span><span class="token punctuation">></span></span>hintslight<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>const</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>edit</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>edit</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>embeddedbitmap<span class="token punctuation">"</span></span> <span class="token attr-name">mode</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>assign<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bool</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bool</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>edit</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>match</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fontconfig</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>修改完成后保存，并用<code>fc-cache -vf</code>重新刷新字体缓存，右键输入法重新载入，尝试输入emoji相关表情发现可以在输入法显示且系统也可以显示。</p>
+</li>
+</ol>
+<h1 id="链接相关"><a href="#链接相关" class="headerlink" title="链接相关"></a>链接相关</h1><p><a target="_blank" rel="noopener" href="https://rime.im/"><em>RIME</em> | 中州韻輸入法引擎</a></p>
+<p><a target="_blank" rel="noopener" href="https://flammie.github.io/dotfiles/fontconfig.html">Fontconfig and Noto Color Emoji</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/studyzy/imewlconverter">studyzy/imewlconverter: 一款开源免费的输入法词库转换程序</a></p>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Fcitx5_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Fcitx5 - ArchWiki</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/fkxxyz/rime-cloverpinyin/issues/43">archlinux 建议装noto fonts 包 可以完美适配表情 🙃#43</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.woshiluo.com/1693.html">[Woshiluo’s Notebook]</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/B1ackSand">B1ackSand</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blacksand.top/2021/10/18/fcitx5-rime个人配置以及踩坑点解决简要/">https://blacksand.top/2021/10/18/fcitx5-rime个人配置以及踩坑点解决简要/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">此文章版权归B1ackSand所有，如有转载，请注明来自原作者</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/10/18/AGszuCDQZy1H5hp.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">使用GVT-g将IGPU传递给KVM</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/09/07/Linux%E4%B8%8Bmysql%E5%AF%BC%E5%87%BA.sql%E6%96%87%E4%BB%B6/" title="Linux下mysql导出.sql文件"><img class="cover" src="https://z3.ax1x.com/2021/10/08/59yDF1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-07</div><div class="title">Linux下mysql导出.sql文件</div></div></a></div><div><a href="/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/" title="使用GVT-g将IGPU传递给KVM"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-08</div><div class="title">使用GVT-g将IGPU传递给KVM</div></div></a></div><div><a href="/2021/10/08/%E5%A6%82%E4%BD%95%E5%9C%A8ArchLinux%E4%B8%8A%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E8%99%9A%E6%8B%9F%E5%8C%96Win10/" title="如何在ArchLinux上安装KVM并虚拟化Win10"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-08</div><div class="title">如何在ArchLinux上安装KVM并虚拟化Win10</div></div></a></div><div><a href="/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/" title="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北"><img class="cover" src="https://i.loli.net/2021/10/09/a9oj4NRX6F1PleY.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-02</div><div class="title">Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北</div></div></a></div><div><a href="/2021/08/25/%E8%AE%A9Galgame%E5%9C%A8ArchLinux%E9%80%9A%E8%BF%87Wine%E6%AD%A3%E7%A1%AE%E8%BF%90%E8%A1%8C/" title="让Galgame在ArchLinux通过Wine正确运行"><img class="cover" src="https://z3.ax1x.com/2021/08/25/hESU4H.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-25</div><div class="title">让Galgame在ArchLinux通过Wine正确运行</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://z3.ax1x.com/2021/08/25/hAzJYj.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">BlackSand</div><div class="author-info__description">OwO</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/B1ackSand" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:peilanfengfeng@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">茫茫人海有缘相逢</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%99%E4%B9%88%E5%81%9A"><span class="toc-number">1.</span> <span class="toc-text">为什么要这么做?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A5%E9%97%A8"><span class="toc-number">2.</span> <span class="toc-text">入门</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Clone%E5%88%AB%E4%BA%BA%E9%85%8D%E7%BD%AE%E5%A5%BD%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.1.</span> <span class="toc-text">Clone别人配置好的项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-number">3.2.</span> <span class="toc-text">修改配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#default-custom-yaml"><span class="toc-number">3.2.1.</span> <span class="toc-text">default.custom.yaml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#luna-pinyin-custom-yaml"><span class="toc-number">3.2.2.</span> <span class="toc-text">luna_pinyin.custom.yaml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#luna-pinyin-extended-dict-yaml"><span class="toc-number">3.2.3.</span> <span class="toc-text">luna_pinyin.extended.dict.yaml</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9D%91%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">坑点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Arch%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BAemoji%E8%A1%A8%E6%83%85"><span class="toc-number">4.1.</span> <span class="toc-text">Arch无法显示emoji表情</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E7%9B%B8%E5%85%B3"><span class="toc-number">5.</span> <span class="toc-text">链接相关</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/10/18/fcitx5-rime%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E7%82%B9%E8%A7%A3%E5%86%B3%E7%AE%80%E8%A6%81/" title="fcitx5-rime个人配置以及踩坑点解决简要"><img src="https://i.loli.net/2021/10/18/AGszuCDQZy1H5hp.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="fcitx5-rime个人配置以及踩坑点解决简要"/></a><div class="content"><a class="title" href="/2021/10/18/fcitx5-rime%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E8%B8%A9%E5%9D%91%E7%82%B9%E8%A7%A3%E5%86%B3%E7%AE%80%E8%A6%81/" title="fcitx5-rime个人配置以及踩坑点解决简要">fcitx5-rime个人配置以及踩坑点解决简要</a><time datetime="2021-10-18T06:18:25.000Z" title="发表于 2021-10-18 14:18:25">2021-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/" title="使用GVT-g将IGPU传递给KVM"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用GVT-g将IGPU传递给KVM"/></a><div class="content"><a class="title" href="/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/" title="使用GVT-g将IGPU传递给KVM">使用GVT-g将IGPU传递给KVM</a><time datetime="2021-10-07T19:42:11.000Z" title="发表于 2021-10-08 03:42:11">2021-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/08/%E5%A6%82%E4%BD%95%E5%9C%A8ArchLinux%E4%B8%8A%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E8%99%9A%E6%8B%9F%E5%8C%96Win10/" title="如何在ArchLinux上安装KVM并虚拟化Win10"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何在ArchLinux上安装KVM并虚拟化Win10"/></a><div class="content"><a class="title" href="/2021/10/08/%E5%A6%82%E4%BD%95%E5%9C%A8ArchLinux%E4%B8%8A%E5%AE%89%E8%A3%85KVM%E5%B9%B6%E8%99%9A%E6%8B%9F%E5%8C%96Win10/" title="如何在ArchLinux上安装KVM并虚拟化Win10">如何在ArchLinux上安装KVM并虚拟化Win10</a><time datetime="2021-10-07T19:42:11.000Z" title="发表于 2021-10-08 03:42:11">2021-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/" title="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北"><img src="https://i.loli.net/2021/10/09/a9oj4NRX6F1PleY.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北"/></a><div class="content"><a class="title" href="/2021/10/02/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Lutris%E5%AE%89%E8%A3%85%E5%B9%B6%E6%B8%B8%E7%8E%A9%E4%BD%8E%E5%BB%B6%E8%BF%9F%E9%9F%B3%E9%A2%91osu!%20%E7%9B%B8%E5%85%B3%E6%8C%87%E5%8C%97/" title="Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北">Linux下使用Lutris安装并游玩低延迟音频osu!Stable相关指北</a><time datetime="2021-10-02T10:35:02.000Z" title="发表于 2021-10-02 18:35:02">2021-10-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/" title="SpringBoot下处理跨域请求"><img src="https://z3.ax1x.com/2021/10/08/59y6SK.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot下处理跨域请求"/></a><div class="content"><a class="title" href="/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/" title="SpringBoot下处理跨域请求">SpringBoot下处理跨域请求</a><time datetime="2021-09-12T07:37:40.000Z" title="发表于 2021-09-12 15:37:40">2021-09-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By BlackSand</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44010602009735"><img class="icp-icon" src="https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png"><span>粤公网安备44010602009735号</span></a> <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><span>粤ICP备2021141794号-1</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
