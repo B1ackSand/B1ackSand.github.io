@@ -20,6 +20,15 @@
   </url>
   
   <url>
+    <loc>https://blacksand.top/link/index.html</loc>
+    
+    <lastmod>2021-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blacksand.top/categories/index.html</loc>
     
     <lastmod>2021-11-26</lastmod>
@@ -38,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://blacksand.top/link/index.html</loc>
+    <loc>https://blacksand.top/1970/01/01/hello-world/</loc>
     
     <lastmod>2021-11-26</lastmod>
     
@@ -47,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://blacksand.top/1970/01/01/hello-world/</loc>
+    <loc>https://blacksand.top/2021/08/25/%E8%AE%A9Galgame%E5%9C%A8ArchLinux%E9%80%9A%E8%BF%87Wine%E6%AD%A3%E7%A1%AE%E8%BF%90%E8%A1%8C/</loc>
     
     <lastmod>2021-11-26</lastmod>
     
@@ -190,6 +199,13 @@
   
   <url>
     <loc>https://blacksand.top/tags/Game/</loc>
+    <lastmod>2021-12-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blacksand.top/tags/Galgame/</loc>
     <lastmod>2021-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
