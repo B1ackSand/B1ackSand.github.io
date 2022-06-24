@@ -110,15 +110,6 @@
   </url>
   
   <url>
-    <loc>https://blacksand.top/2021/10/08/%E4%BD%BF%E7%94%A8GVT-g%E5%B0%86IGPU%E4%BC%A0%E9%80%92%E7%BB%99KVM/</loc>
-    
-    <lastmod>2021-10-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blacksand.top/2021/09/12/SpringBoot%E4%B8%8B%E5%A4%84%E7%90%86%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82/</loc>
     
     <lastmod>2021-10-07</lastmod>
@@ -157,7 +148,7 @@
 
   <url>
     <loc>https://blacksand.top/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -165,84 +156,77 @@
   
   <url>
     <loc>https://blacksand.top/tags/Linux/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/Program/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/Mysql/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/MarkDown/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/SpringBoot/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/Java/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/Android/</loc>
-    <lastmod>2022-06-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blacksand.top/tags/KVM/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/osu/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/Wine/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/Game/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/tags/Galgame/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -251,28 +235,28 @@
   
   <url>
     <loc>https://blacksand.top/categories/Linux/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/categories/Program/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/categories/MarkDown/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blacksand.top/categories/Android/</loc>
-    <lastmod>2022-06-17</lastmod>
+    <lastmod>2022-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
